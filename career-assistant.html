@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Career Advice Assistant case study by Raj Singh: Gemma, Ollama, NLP, and prompt engineering for career guidance.">
+  <title>Career Advice Assistant Case Study | Raj Singh</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <canvas id="neural-canvas" aria-hidden="true"></canvas>
+  <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+
+  <header class="site-header" data-header>
+    <a class="brand" href="../index.html" aria-label="Raj Singh home">
+      <img src="../assets/icons/neural-mark.svg" alt="" class="brand-icon" width="34" height="34">
+      <span>Raj Singh</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Open navigation" aria-controls="site-nav" aria-expanded="false" data-nav-toggle>
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="site-nav" data-site-nav>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#resume">Resume</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main" class="case-main">
+    <section class="case-hero">
+      <div class="reveal">
+        <p class="eyebrow"><span class="status-dot"></span> LLM Career Guidance</p>
+        <h1>Career Advice Assistant</h1>
+        <p>
+          A local LLM assistant using Gemma, Ollama, NLP, and prompt engineering to generate career guidance, interview preparation plans, and structured learning recommendations.
+        </p>
+        <div class="case-actions">
+          <a class="button primary-button" href="#workflow"><span class="button-icon" aria-hidden="true">LLM</span>Workflow</a>
+          <a class="button ghost-button" href="../index.html#projects"><span class="button-icon" aria-hidden="true">04</span>All Projects</a>
+        </div>
+        <div class="stat-strip">
+          <div><strong>Gemma</strong><span>Language model</span></div>
+          <div><strong>Ollama</strong><span>Local inference runtime</span></div>
+          <div><strong>NLP</strong><span>Input understanding</span></div>
+          <div><strong>Prompts</strong><span>Structured guidance templates</span></div>
+        </div>
+      </div>
+      <div class="case-visual reveal">
+        <div class="case-visual-inner">
+          <div class="feed-label">Assistant session · career-planner</div>
+          <div class="assistant-feed">
+            <div class="chat-bubble">I am a fresher interested in AI engineering. What should I learn first?</div>
+            <div class="chat-bubble">Start with Python, ML fundamentals, projects in OpenCV, and deploy one portfolio-ready model.</div>
+            <div class="chat-bubble">Generate a 4-week interview preparation plan.</div>
+          </div>
+          <div class="case-mini-metrics">
+            <div><strong>3</strong><span>Core workflows</span></div>
+            <div><strong>Local</strong><span>Private LLM runtime</span></div>
+            <div><strong>JSON</strong><span>Structured output mode</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="case-content">
+      <section class="case-section reveal">
+        <div class="case-two-col">
+          <article class="case-panel">
+            <p class="eyebrow">Problem</p>
+            <h2>Career guidance is often generic and hard to act on.</h2>
+            <p>
+              Learners need advice that adapts to their background, target role, timeline, and current gaps. Generic lists of courses or interview questions rarely become a usable plan.
+            </p>
+          </article>
+          <article class="case-panel">
+            <p class="eyebrow">Solution</p>
+            <h2>A prompt-engineered LLM advisor with structured outputs.</h2>
+            <p>
+              The assistant collects user goals, transforms them into a normalized context, uses Gemma through Ollama, and returns role-specific career guidance, interview plans, and learning recommendations.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section reveal" id="workflow">
+        <p class="eyebrow">LLM Workflow</p>
+        <h2>From user intent to career roadmap.</h2>
+        <div class="flow-diagram">
+          <article class="flow-step"><span>1</span><h3>Intake</h3><p>Collect background, target role, skill level, timeline, and constraints.</p></article>
+          <article class="flow-step"><span>2</span><h3>Normalize</h3><p>NLP logic converts free text into structured career context.</p></article>
+          <article class="flow-step"><span>3</span><h3>Prompt</h3><p>Templates guide Gemma toward specific, role-aware recommendations.</p></article>
+          <article class="flow-step"><span>4</span><h3>Generate</h3><p>Ollama runs local inference and returns a structured response.</p></article>
+          <article class="flow-step"><span>5</span><h3>Plan</h3><p>The UI presents learning paths, interview tasks, and next actions.</p></article>
+        </div>
+      </section>
+
+      <section class="case-section reveal">
+        <p class="eyebrow">Architecture</p>
+        <h2>Composable assistant architecture.</h2>
+        <div class="system-diagram">
+          <svg class="diagram-lines" viewBox="0 0 1000 460" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="diagramGradient" x1="0" x2="1" y1="0" y2="1">
+                <stop stop-color="#63e6e2"/><stop offset=".55" stop-color="#ff5dd6"/><stop offset="1" stop-color="#ffd166"/>
+              </linearGradient>
+            </defs>
+            <path d="M120 120 C250 86 355 72 480 120 S700 202 850 130"/>
+            <path d="M480 136 C470 238 380 300 250 334"/>
+            <path d="M850 146 C794 248 738 292 660 334"/>
+          </svg>
+          <div class="diagram-node node-a"><strong>User Profile</strong><span>Experience, goals, timelines, preferred learning mode.</span></div>
+          <div class="diagram-node node-b"><strong>Prompt Router</strong><span>Selects career, interview, or roadmap prompt family.</span></div>
+          <div class="diagram-node node-c"><strong>Gemma on Ollama</strong><span>Local LLM generation with controlled instructions.</span></div>
+          <div class="diagram-node node-d"><strong>Recommendation Parser</strong><span>Transforms response into sections and action items.</span></div>
+          <div class="diagram-node node-e"><strong>Assistant UI</strong><span>Career plan, interview plan, and learning resources.</span></div>
+        </div>
+      </section>
+
+      <section class="case-section reveal">
+        <p class="eyebrow">Prompt Examples</p>
+        <h2>Prompt patterns that make the assistant practical.</h2>
+        <div class="prompt-grid">
+          <article class="prompt-card">
+            <h3>Career Guidance</h3>
+            <pre><code>Role: AI career mentor
+User goal: become AI Engineer
+Output:
+- current gap analysis
+- 30 day plan
+- portfolio project ideas</code></pre>
+          </article>
+          <article class="prompt-card">
+            <h3>Interview Prep</h3>
+            <pre><code>Create a focused interview plan for:
+skills = Python, ML, OpenCV
+target = junior AI engineer
+include practice questions and mock tasks.</code></pre>
+          </article>
+          <article class="prompt-card">
+            <h3>Learning Plan</h3>
+            <pre><code>Return JSON with:
+weeks, topics, projects, resources,
+assessment checkpoints, and risks.</code></pre>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section reveal">
+        <p class="eyebrow">Product Screens</p>
+        <h2>Assistant surfaces for guidance, prep, and learning.</h2>
+        <div class="screenshot-grid">
+          <article class="screen-mock">
+            <div class="screen-top"><span></span><span></span><span></span></div>
+            <div class="screen-body">
+              <h3>Career Roadmap</h3>
+              <div class="timeline-bars" aria-hidden="true">
+                <div><p>Python + SQL</p><span style="width: 88%;"></span></div>
+                <div><p>ML Foundations</p><span style="width: 72%;"></span></div>
+                <div><p>Computer Vision</p><span style="width: 64%;"></span></div>
+                <div><p>Portfolio Build</p><span style="width: 82%;"></span></div>
+              </div>
+            </div>
+          </article>
+          <article class="screen-mock">
+            <div class="screen-top"><span></span><span></span><span></span></div>
+            <div class="screen-body">
+              <h3>Interview Plan</h3>
+              <div class="chat-bubble">Day 1-3: Python coding patterns and NumPy exercises.</div>
+              <div class="chat-bubble">Day 4-7: ML metrics, bias/variance, model evaluation.</div>
+              <div class="mini-line"></div>
+            </div>
+          </article>
+          <article class="screen-mock">
+            <div class="screen-top"><span></span><span></span><span></span></div>
+            <div class="screen-body">
+              <h3>Recommendation Panel</h3>
+              <div class="metric-grid">
+                <div class="metric-tile"><strong>4</strong><span>Weeks</span></div>
+                <div class="metric-tile"><strong>12</strong><span>Tasks</span></div>
+                <div class="metric-tile"><strong>3</strong><span>Projects</span></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section reveal">
+        <p class="eyebrow">Challenges</p>
+        <div class="challenge-grid">
+          <article class="challenge-card"><h3>Reducing generic answers</h3><p>Prompt templates needed role, skill, and timeline constraints to avoid vague advice.</p></article>
+          <article class="challenge-card"><h3>Reliable structure</h3><p>Outputs were shaped into repeatable sections so the UI could show plans cleanly.</p></article>
+          <article class="challenge-card"><h3>Local inference tradeoffs</h3><p>Running through Ollama improved privacy while requiring careful prompt size and response control.</p></article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Career Advice Assistant case study by Raj Singh.</p>
+    <a href="../index.html#projects">Back to projects</a>
+  </footer>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

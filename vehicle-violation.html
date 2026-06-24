@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vehicle Violation Detection case study by Raj Singh: YOLO, OpenCV, and deep learning for traffic monitoring.">
+  <title>Vehicle Violation Detection Case Study | Raj Singh</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <canvas id="neural-canvas" aria-hidden="true"></canvas>
+  <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+
+  <header class="site-header" data-header>
+    <a class="brand" href="../index.html" aria-label="Raj Singh home">
+      <img src="../assets/icons/neural-mark.svg" alt="" class="brand-icon" width="34" height="34">
+      <span>Raj Singh</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Open navigation" aria-controls="site-nav" aria-expanded="false" data-nav-toggle>
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="site-nav" data-site-nav>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#resume">Resume</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main" class="case-main">
+    <section class="case-hero">
+      <div class="reveal">
+        <p class="eyebrow"><span class="status-dot"></span> Traffic Intelligence</p>
+        <h1>Vehicle Violation Detection</h1>
+        <p>
+          A computer vision monitoring system that detects vehicles, evaluates traffic-rule violations, and surfaces event metrics for review using YOLO, OpenCV, and deep learning.
+        </p>
+        <div class="case-actions">
+          <a class="button primary-button" href="#vehicle-architecture"><span class="button-icon" aria-hidden="true">CV</span>Architecture</a>
+          <a class="button ghost-button" href="../index.html#projects"><span class="button-icon" aria-hidden="true">04</span>All Projects</a>
+        </div>
+        <div class="stat-strip">
+          <div><strong>YOLO</strong><span>Vehicle detector</span></div>
+          <div><strong>OpenCV</strong><span>Frame processing</span></div>
+          <div><strong>Rules</strong><span>Violation logic</span></div>
+          <div><strong>Monitor</strong><span>Event review dashboard</span></div>
+        </div>
+      </div>
+      <div class="case-visual reveal">
+        <div class="case-visual-inner">
+          <div class="feed-label">Traffic camera · junction-12</div>
+          <div class="traffic-feed">
+            <div class="lane-box" style="left: 18%; top: 30%; width: 90px; height: 48px;"></div>
+            <div class="lane-box alert" style="right: 18%; bottom: 28%; width: 110px; height: 52px;"></div>
+            <div class="lane-box" style="left: 42%; bottom: 18%; width: 78px; height: 44px; border-color: var(--amber);"></div>
+          </div>
+          <div class="case-mini-metrics">
+            <div><strong>42</strong><span>Vehicles tracked</span></div>
+            <div><strong>7</strong><span>Violation events</span></div>
+            <div><strong>0.89</strong><span>Average confidence</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="case-content">
+      <section class="case-section reveal">
+        <div class="case-two-col">
+          <article class="case-panel">
+            <p class="eyebrow">Problem</p>
+            <h2>Manual traffic monitoring is slow and inconsistent.</h2>
+            <p>
+              Traffic teams need a way to identify vehicle movement patterns and possible violations from camera feeds without depending only on manual observation.
+            </p>
+          </article>
+          <article class="case-panel">
+            <p class="eyebrow">Solution</p>
+            <h2>Automated detection plus rule-based event logic.</h2>
+            <p>
+              The system detects vehicles in each frame, tracks their location relative to monitoring zones, and creates violation events for review when rule conditions are met.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section reveal" id="vehicle-architecture">
+        <p class="eyebrow">Architecture Diagram</p>
+        <h2>Traffic stream to violation event pipeline.</h2>
+        <div class="system-diagram">
+          <svg class="diagram-lines" viewBox="0 0 1000 460" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="diagramGradient" x1="0" x2="1" y1="0" y2="1">
+                <stop stop-color="#63e6e2"/><stop offset=".55" stop-color="#ff5dd6"/><stop offset="1" stop-color="#ffd166"/>
+              </linearGradient>
+            </defs>
+            <path d="M130 124 C260 80 350 68 480 124 S690 208 846 132"/>
+            <path d="M220 320 C360 246 510 226 660 320"/>
+            <path d="M480 140 C450 234 404 286 260 334"/>
+            <path d="M846 148 C788 238 744 286 676 330"/>
+          </svg>
+          <div class="diagram-node node-a"><strong>Camera Feed</strong><span>Traffic video source with road zones.</span></div>
+          <div class="diagram-node node-b"><strong>Frame Processor</strong><span>OpenCV resize, crop, and zone overlays.</span></div>
+          <div class="diagram-node node-c"><strong>YOLO Detector</strong><span>Vehicle class detection and confidence scoring.</span></div>
+          <div class="diagram-node node-d"><strong>Violation Logic</strong><span>Zone crossing, lane checks, and event rules.</span></div>
+          <div class="diagram-node node-e"><strong>Monitoring UI</strong><span>Metrics, event review, and evidence snapshots.</span></div>
+        </div>
+      </section>
+
+      <section class="case-section reveal">
+        <p class="eyebrow">Workflow Diagram</p>
+        <h2>Detection and violation assessment.</h2>
+        <div class="flow-diagram">
+          <article class="flow-step"><span>1</span><h3>Read Frame</h3><p>Capture traffic frame with timestamp and camera ID.</p></article>
+          <article class="flow-step"><span>2</span><h3>Detect Vehicle</h3><p>Run YOLO and filter detections by confidence.</p></article>
+          <article class="flow-step"><span>3</span><h3>Map Zones</h3><p>Compare bounding boxes to lanes, stop lines, and regions.</p></article>
+          <article class="flow-step"><span>4</span><h3>Evaluate Rules</h3><p>Mark potential violations from movement and zone logic.</p></article>
+          <article class="flow-step"><span>5</span><h3>Review</h3><p>Store metrics and event snapshots for monitoring.</p></article>
+        </div>
+      </section>
+
+      <section class="case-section reveal">
+        <p class="eyebrow">Metrics</p>
+        <h2>Operational dashboard for traffic events.</h2>
+        <div class="dashboard-mock">
+          <div class="dashboard-main">
+            <h3>Violation events by interval</h3>
+            <div class="chart-bars" aria-hidden="true">
+              <span style="height: 18%;"></span><span style="height: 38%;"></span><span style="height: 54%;"></span><span style="height: 32%;"></span>
+              <span style="height: 72%;"></span><span style="height: 44%;"></span><span style="height: 66%;"></span><span style="height: 28%;"></span>
+            </div>
+            <div class="metric-grid">
+              <div class="metric-tile"><strong>248</strong><span>Vehicles observed</span></div>
+              <div class="metric-tile"><strong>31</strong><span>Flagged events</span></div>
+              <div class="metric-tile"><strong>89%</strong><span>Avg confidence</span></div>
+            </div>
+          </div>
+          <div class="dashboard-side">
+            <h3>Event types</h3>
+            <div class="timeline-bars" aria-hidden="true">
+              <div><p>Lane issue</p><span style="width: 72%;"></span></div>
+              <div><p>Signal line</p><span style="width: 58%;"></span></div>
+              <div><p>Wrong zone</p><span style="width: 46%;"></span></div>
+              <div><p>Review queue</p><span style="width: 84%;"></span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section reveal">
+        <p class="eyebrow">Product Screens</p>
+        <div class="screenshot-grid">
+          <article class="screen-mock">
+            <div class="screen-top"><span></span><span></span><span></span></div>
+            <div class="screen-body">
+              <h3>Live Monitoring</h3>
+              <div class="feed-card">
+                <div class="lane-box" style="left: 18%; top: 34%; width: 70px; height: 38px;"></div>
+                <div class="lane-box alert" style="right: 20%; bottom: 30%; width: 86px; height: 42px;"></div>
+              </div>
+            </div>
+          </article>
+          <article class="screen-mock">
+            <div class="screen-top"><span></span><span></span><span></span></div>
+            <div class="screen-body">
+              <h3>Event Queue</h3>
+              <div class="metric-grid">
+                <div class="metric-tile"><strong>12</strong><span>Pending</span></div>
+                <div class="metric-tile"><strong>19</strong><span>Reviewed</span></div>
+                <div class="metric-tile"><strong>7</strong><span>Critical</span></div>
+              </div>
+            </div>
+          </article>
+          <article class="screen-mock">
+            <div class="screen-top"><span></span><span></span><span></span></div>
+            <div class="screen-body">
+              <h3>Zone Calibration</h3>
+              <div class="feed-card">
+                <span class="road-lane"></span>
+                <div class="mini-line"></div><div class="mini-line is-short"></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section reveal">
+        <p class="eyebrow">Challenges</p>
+        <div class="challenge-grid">
+          <article class="challenge-card"><h3>Camera perspective</h3><p>Violation regions depend heavily on camera placement, requiring configurable monitoring zones.</p></article>
+          <article class="challenge-card"><h3>Occlusion</h3><p>Dense traffic can hide vehicles, so confidence thresholds and review queues are important.</p></article>
+          <article class="challenge-card"><h3>Rule precision</h3><p>Violation logic must be transparent so human reviewers understand why an event was flagged.</p></article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Vehicle Violation Detection case study by Raj Singh.</p>
+    <a href="../index.html#projects">Back to projects</a>
+  </footer>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

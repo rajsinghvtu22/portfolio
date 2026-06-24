@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Number Plate Recognition case study by Raj Singh: OCR, OpenCV, and deep learning for vehicle identification.">
+  <title>Number Plate Recognition Case Study | Raj Singh</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <canvas id="neural-canvas" aria-hidden="true"></canvas>
+  <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+
+  <header class="site-header" data-header>
+    <a class="brand" href="../index.html" aria-label="Raj Singh home">
+      <img src="../assets/icons/neural-mark.svg" alt="" class="brand-icon" width="34" height="34">
+      <span>Raj Singh</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Open navigation" aria-controls="site-nav" aria-expanded="false" data-nav-toggle>
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="site-nav" data-site-nav>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#resume">Resume</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main" class="case-main">
+    <section class="case-hero">
+      <div class="reveal">
+        <p class="eyebrow"><span class="status-dot"></span> OCR Mobility System</p>
+        <h1>Number Plate Recognition</h1>
+        <p>
+          A number plate recognition pipeline using OCR, OpenCV, and deep learning to detect plates, extract text, validate formats, and support vehicle identification workflows.
+        </p>
+        <div class="case-actions">
+          <a class="button primary-button" href="#ocr-pipeline"><span class="button-icon" aria-hidden="true">OCR</span>Pipeline</a>
+          <a class="button ghost-button" href="../index.html#projects"><span class="button-icon" aria-hidden="true">04</span>All Projects</a>
+        </div>
+        <div class="stat-strip">
+          <div><strong>OCR</strong><span>Text extraction</span></div>
+          <div><strong>OpenCV</strong><span>Image preprocessing</span></div>
+          <div><strong>DL</strong><span>Plate detection</span></div>
+          <div><strong>ID</strong><span>Vehicle lookup ready</span></div>
+        </div>
+      </div>
+      <div class="case-visual reveal">
+        <div class="case-visual-inner">
+          <div class="feed-label">ANPR camera · entry-gate</div>
+          <div class="ocr-feed">
+            <div class="ocr-plate-large">KA 05 AI 2026</div>
+          </div>
+          <div class="case-mini-metrics">
+            <div><strong>0.94</strong><span>Plate confidence</span></div>
+            <div><strong>12 ms</strong><span>OCR pass</span></div>
+            <div><strong>Valid</strong><span>Format check</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="case-content">
+      <section class="case-section reveal">
+        <div class="case-two-col">
+          <article class="case-panel">
+            <p class="eyebrow">Problem</p>
+            <h2>Vehicle identification from video is noisy and error-prone.</h2>
+            <p>
+              Number plates appear at different angles, distances, lighting conditions, and motion blur levels. Extracting reliable text requires more than a single OCR call.
+            </p>
+          </article>
+          <article class="case-panel">
+            <p class="eyebrow">Solution</p>
+            <h2>A staged OCR pipeline for plate detection and validation.</h2>
+            <p>
+              The system locates plate regions, normalizes the image crop, extracts text, validates plate formats, and prepares the result for vehicle identification or downstream review.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section reveal" id="ocr-pipeline">
+        <p class="eyebrow">OCR Pipeline</p>
+        <h2>Plate image to validated vehicle text.</h2>
+        <div class="flow-diagram">
+          <article class="flow-step"><span>1</span><h3>Frame Input</h3><p>Read vehicle image or camera frame with timestamp metadata.</p></article>
+          <article class="flow-step"><span>2</span><h3>Plate Detect</h3><p>Find plate region using detection and contour-based cues.</p></article>
+          <article class="flow-step"><span>3</span><h3>Normalize ROI</h3><p>Crop, resize, denoise, sharpen, and improve contrast.</p></article>
+          <article class="flow-step"><span>4</span><h3>Extract Text</h3><p>Run OCR and rank candidates by confidence.</p></article>
+          <article class="flow-step"><span>5</span><h3>Validate</h3><p>Apply format checks and hand off to vehicle identification.</p></article>
+        </div>
+      </section>
+
+      <section class="case-section reveal">
+        <p class="eyebrow">Architecture Diagram</p>
+        <h2>Modular ANPR architecture.</h2>
+        <div class="system-diagram">
+          <svg class="diagram-lines" viewBox="0 0 1000 460" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="diagramGradient" x1="0" x2="1" y1="0" y2="1">
+                <stop stop-color="#63e6e2"/><stop offset=".55" stop-color="#ff5dd6"/><stop offset="1" stop-color="#ffd166"/>
+              </linearGradient>
+            </defs>
+            <path d="M120 120 C256 80 360 76 480 120 S690 210 850 132"/>
+            <path d="M220 320 C352 245 520 230 660 320"/>
+            <path d="M480 136 C462 222 410 284 260 334"/>
+            <path d="M850 148 C786 250 738 286 676 330"/>
+          </svg>
+          <div class="diagram-node node-a"><strong>Image Source</strong><span>Camera frame, upload, or gate feed.</span></div>
+          <div class="diagram-node node-b"><strong>Plate Detector</strong><span>Locates license plate region for cropping.</span></div>
+          <div class="diagram-node node-c"><strong>Preprocessor</strong><span>Denoising, thresholding, resize, perspective correction.</span></div>
+          <div class="diagram-node node-d"><strong>OCR Engine</strong><span>Extracts alphanumeric text candidates.</span></div>
+          <div class="diagram-node node-e"><strong>Vehicle ID Layer</strong><span>Validation, lookup, confidence, and review queue.</span></div>
+        </div>
+      </section>
+
+      <section class="case-section reveal">
+        <p class="eyebrow">Metrics</p>
+        <h2>Recognition quality and processing health.</h2>
+        <div class="dashboard-mock">
+          <div class="dashboard-main">
+            <h3>OCR confidence by sample batch</h3>
+            <div class="chart-bars" aria-hidden="true">
+              <span style="height: 82%;"></span><span style="height: 74%;"></span><span style="height: 91%;"></span><span style="height: 68%;"></span>
+              <span style="height: 88%;"></span><span style="height: 80%;"></span><span style="height: 94%;"></span><span style="height: 72%;"></span>
+            </div>
+            <div class="metric-grid">
+              <div class="metric-tile"><strong>94%</strong><span>Plate confidence</span></div>
+              <div class="metric-tile"><strong>38 ms</strong><span>Full pipeline</span></div>
+              <div class="metric-tile"><strong>97%</strong><span>Format validation</span></div>
+            </div>
+          </div>
+          <div class="dashboard-side">
+            <h3>OCR stages</h3>
+            <div class="timeline-bars" aria-hidden="true">
+              <div><p>Detect plate</p><span style="width: 86%;"></span></div>
+              <div><p>Normalize ROI</p><span style="width: 72%;"></span></div>
+              <div><p>Extract text</p><span style="width: 64%;"></span></div>
+              <div><p>Validate ID</p><span style="width: 91%;"></span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section reveal">
+        <p class="eyebrow">Product Screens</p>
+        <h2>ANPR screens for inspection and review.</h2>
+        <div class="screenshot-grid">
+          <article class="screen-mock">
+            <div class="screen-top"><span></span><span></span><span></span></div>
+            <div class="screen-body">
+              <h3>Plate Detection</h3>
+              <div class="feed-card ocr-feed"><div class="ocr-plate-large" style="font-size: .86rem;">KA 05 AI 2026</div></div>
+            </div>
+          </article>
+          <article class="screen-mock">
+            <div class="screen-top"><span></span><span></span><span></span></div>
+            <div class="screen-body">
+              <h3>OCR Result</h3>
+              <div class="metric-grid">
+                <div class="metric-tile"><strong>KA</strong><span>State</span></div>
+                <div class="metric-tile"><strong>05</strong><span>RTO</span></div>
+                <div class="metric-tile"><strong>0.94</strong><span>Confidence</span></div>
+              </div>
+            </div>
+          </article>
+          <article class="screen-mock">
+            <div class="screen-top"><span></span><span></span><span></span></div>
+            <div class="screen-body">
+              <h3>Review Queue</h3>
+              <div class="timeline-bars" aria-hidden="true">
+                <div><p>High confidence</p><span style="width: 82%;"></span></div>
+                <div><p>Needs review</p><span style="width: 34%;"></span></div>
+                <div><p>Invalid format</p><span style="width: 14%;"></span></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section reveal">
+        <p class="eyebrow">Challenges</p>
+        <div class="challenge-grid">
+          <article class="challenge-card"><h3>Motion blur</h3><p>Vehicle speed can degrade plate readability, making preprocessing and confidence scoring essential.</p></article>
+          <article class="challenge-card"><h3>Plate variation</h3><p>Fonts, dirt, glare, and physical damage require robust OCR normalization steps.</p></article>
+          <article class="challenge-card"><h3>False positives</h3><p>Text-like regions on vehicles must be filtered with plate-shape and format validation.</p></article>
+        </div>
+      </section>
+
+      <section class="case-section reveal">
+        <p class="eyebrow">Lessons Learned</p>
+        <ul class="lesson-list">
+          <li><strong>Preprocessing drives OCR quality.</strong> Denoising, contrast, and ROI cleanup can matter as much as the OCR engine itself.</li>
+          <li><strong>Validation protects downstream systems.</strong> Format checks and confidence thresholds reduce bad IDs before lookup.</li>
+          <li><strong>Review workflows matter.</strong> Low-confidence reads need a clean human-in-the-loop path.</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Number Plate Recognition case study by Raj Singh.</p>
+    <a href="../index.html#projects">Back to projects</a>
+  </footer>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

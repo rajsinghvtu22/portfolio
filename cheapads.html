@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CheapAds case study by Raj Singh: real-time billboard analytics using YOLOv5, OpenCV, and Python.">
+  <title>CheapAds Case Study | Raj Singh</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <canvas id="neural-canvas" aria-hidden="true"></canvas>
+  <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+
+  <header class="site-header" data-header>
+    <a class="brand" href="../index.html" aria-label="Raj Singh home">
+      <img src="../assets/icons/neural-mark.svg" alt="" class="brand-icon" width="34" height="34">
+      <span>Raj Singh</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Open navigation" aria-controls="site-nav" aria-expanded="false" data-nav-toggle>
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="site-nav" data-site-nav>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#resume">Resume</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main" class="case-main">
+    <section class="case-hero">
+      <div class="reveal">
+        <p class="eyebrow"><span class="status-dot"></span> Real-Time Billboard Analytics</p>
+        <h1>CheapAds</h1>
+        <p>
+          A real-time AI analytics platform designed to help advertisers measure billboard visibility, viewer counts, ad runtime, and campaign performance with YOLOv5, OpenCV, and Python.
+        </p>
+        <div class="case-actions">
+          <a class="button primary-button" href="#architecture"><span class="button-icon" aria-hidden="true">AI</span>Architecture</a>
+          <a class="button ghost-button" href="../index.html#projects"><span class="button-icon" aria-hidden="true">04</span>All Projects</a>
+        </div>
+        <div class="stat-strip">
+          <div><strong>20-30 FPS</strong><span>Real-time processing target</span></div>
+          <div><strong>80-90%</strong><span>Detection accuracy range</span></div>
+          <div><strong>YOLOv5</strong><span>Viewer detection model</span></div>
+          <div><strong>WhatsApp</strong><span>Automated report delivery</span></div>
+        </div>
+      </div>
+      <div class="case-visual reveal">
+        <div class="case-visual-inner">
+          <div class="feed-label">Live billboard camera · BLR-03</div>
+          <div class="camera-feed">
+            <div class="detection-box" data-label="viewer .91" style="left: 16%; top: 38%; width: 74px; height: 122px;"></div>
+            <div class="detection-box" data-label="viewer .88" style="left: 44%; top: 31%; width: 68px; height: 130px; border-color: var(--magenta);"></div>
+            <div class="detection-box" data-label="viewer .82" style="right: 17%; top: 42%; width: 76px; height: 116px; border-color: var(--amber);"></div>
+          </div>
+          <div class="case-mini-metrics">
+            <div><strong>127</strong><span>Viewers in current window</span></div>
+            <div><strong>08:42</strong><span>Ad runtime tracked</span></div>
+            <div><strong>0.91</strong><span>Average confidence</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="case-content">
+      <section class="case-section reveal">
+        <div class="case-two-col">
+          <article class="case-panel">
+            <p class="eyebrow">Problem</p>
+            <h2>Outdoor advertising lacks credible viewer analytics.</h2>
+            <p>
+              Billboard campaigns are usually sold on estimated impressions, location quality, and campaign duration. Advertisers struggle to know how many people actually viewed an ad, how traffic changed over time, and whether an ad ran for the promised duration.
+            </p>
+          </article>
+          <article class="case-panel">
+            <p class="eyebrow">Solution</p>
+            <h2>Computer vision telemetry for physical ad inventory.</h2>
+            <p>
+              CheapAds processes live camera frames, detects viewers with YOLOv5, counts validated detections, tracks ad runtime, and sends campaign summaries through a dashboard and WhatsApp reporting flow.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section reveal" id="architecture">
+        <p class="eyebrow">Architecture Diagram</p>
+        <h2>From camera stream to campaign intelligence.</h2>
+        <div class="system-diagram">
+          <svg class="diagram-lines" viewBox="0 0 1000 460" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="diagramGradient" x1="0" x2="1" y1="0" y2="1">
+                <stop stop-color="#63e6e2"/>
+                <stop offset=".55" stop-color="#ff5dd6"/>
+                <stop offset="1" stop-color="#ffd166"/>
+              </linearGradient>
+            </defs>
+            <path d="M130 116 C250 46 380 70 478 118 S710 212 835 122"/>
+            <path d="M220 320 C360 230 504 216 640 320"/>
+            <path d="M498 132 C475 218 414 276 260 338"/>
+            <path d="M835 138 C794 236 748 284 676 326"/>
+          </svg>
+          <div class="diagram-node node-a"><strong>Camera Stream</strong><span>RTSP or local feed capturing billboard zone.</span></div>
+          <div class="diagram-node node-b"><strong>Frame Buffer</strong><span>OpenCV preprocessing, resizing, and frame sampling.</span></div>
+          <div class="diagram-node node-c"><strong>YOLOv5 Detector</strong><span>Viewer detection with confidence thresholding.</span></div>
+          <div class="diagram-node node-d"><strong>Analytics Engine</strong><span>Counting, runtime tracking, and deduplication windows.</span></div>
+          <div class="diagram-node node-e"><strong>Reports Layer</strong><span>Dashboard metrics and WhatsApp delivery.</span></div>
+        </div>
+      </section>
+
+      <section class="case-section reveal">
+        <p class="eyebrow">Data Flow Diagram</p>
+        <h2>Realtime processing pipeline.</h2>
+        <div class="flow-diagram">
+          <article class="flow-step"><span>1</span><h3>Capture</h3><p>Camera frames are read from a fixed billboard-facing stream.</p></article>
+          <article class="flow-step"><span>2</span><h3>Preprocess</h3><p>Frames are resized, normalized, and sampled for stable inference.</p></article>
+          <article class="flow-step"><span>3</span><h3>Detect</h3><p>YOLOv5 identifies viewers and returns confidence-scored boxes.</p></article>
+          <article class="flow-step"><span>4</span><h3>Aggregate</h3><p>Counts, timestamps, runtime, and confidence metrics are merged.</p></article>
+          <article class="flow-step"><span>5</span><h3>Report</h3><p>Insights are rendered to dashboard widgets and WhatsApp summaries.</p></article>
+        </div>
+      </section>
+
+      <section class="case-section reveal">
+        <p class="eyebrow">Metrics Dashboard Mockup</p>
+        <h2>Campaign performance at a glance.</h2>
+        <div class="dashboard-mock">
+          <div class="dashboard-main">
+            <h3>Viewer count by hour</h3>
+            <div class="chart-bars" aria-hidden="true">
+              <span style="height: 36%;"></span><span style="height: 68%;"></span><span style="height: 52%;"></span><span style="height: 84%;"></span>
+              <span style="height: 74%;"></span><span style="height: 92%;"></span><span style="height: 63%;"></span><span style="height: 48%;"></span>
+            </div>
+            <div class="metric-grid">
+              <div class="metric-tile"><strong>4,820</strong><span>Total viewers</span></div>
+              <div class="metric-tile"><strong>86%</strong><span>Average accuracy</span></div>
+              <div class="metric-tile"><strong>11.7h</strong><span>Verified ad runtime</span></div>
+            </div>
+          </div>
+          <div class="dashboard-side">
+            <h3>Runtime windows</h3>
+            <div class="timeline-bars" aria-hidden="true">
+              <div><p>Morning</p><span style="width: 78%;"></span></div>
+              <div><p>Afternoon</p><span style="width: 92%;"></span></div>
+              <div><p>Evening</p><span style="width: 68%;"></span></div>
+              <div><p>Night</p><span style="width: 41%;"></span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section reveal">
+        <p class="eyebrow">Product Screens</p>
+        <h2>Polished interface mockups for the analytics workflow.</h2>
+        <div class="screenshot-grid">
+          <article class="screen-mock">
+            <div class="screen-top"><span></span><span></span><span></span></div>
+            <div class="screen-body">
+              <h3>Live Detection View</h3>
+              <div class="feed-card">
+                <div class="detection-box" data-label="viewer" style="left: 24%; top: 38%; width: 48px; height: 78px;"></div>
+                <div class="detection-box" data-label="viewer" style="right: 24%; top: 31%; width: 56px; height: 90px; border-color: var(--amber);"></div>
+              </div>
+              <div class="mini-line"></div><div class="mini-line is-short"></div>
+            </div>
+          </article>
+          <article class="screen-mock">
+            <div class="screen-top"><span></span><span></span><span></span></div>
+            <div class="screen-body">
+              <h3>Advertiser Dashboard</h3>
+              <div class="chart-bars" aria-hidden="true" style="height: 150px;">
+                <span style="height: 44%;"></span><span style="height: 75%;"></span><span style="height: 62%;"></span><span style="height: 90%;"></span>
+                <span style="height: 70%;"></span><span style="height: 58%;"></span><span style="height: 82%;"></span><span style="height: 46%;"></span>
+              </div>
+            </div>
+          </article>
+          <article class="screen-mock">
+            <div class="screen-top"><span></span><span></span><span></span></div>
+            <div class="screen-body">
+              <h3>WhatsApp Report</h3>
+              <div class="chat-bubble">Campaign BLR-03 reached 4,820 verified viewers today.</div>
+              <div class="chat-bubble">Peak visibility: 6 PM - 8 PM. Runtime: 11.7 hours.</div>
+              <div class="mini-line"></div><div class="mini-line is-short"></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section reveal">
+        <p class="eyebrow">Challenges</p>
+        <h2>Engineering constraints solved during development.</h2>
+        <div class="challenge-grid">
+          <article class="challenge-card"><h3>Lighting variation</h3><p>Outdoor feeds change drastically across day, evening, rain, and shadow conditions, requiring threshold tuning and robust preprocessing.</p></article>
+          <article class="challenge-card"><h3>Counting stability</h3><p>Raw detections can double-count people across adjacent frames, so counting needed temporal windows and confidence filtering.</p></article>
+          <article class="challenge-card"><h3>Latency budget</h3><p>The pipeline had to balance frame rate, accuracy, and reporting cadence to preserve near real-time performance.</p></article>
+        </div>
+      </section>
+
+      <section class="case-section reveal">
+        <p class="eyebrow">Lessons Learned</p>
+        <ul class="lesson-list">
+          <li><strong>Production vision is more than detection.</strong> The value comes from reliable aggregation, thresholds, and business-facing metrics.</li>
+          <li><strong>Model speed matters early.</strong> FPS targets influence preprocessing, image size, confidence thresholds, and deployment hardware.</li>
+          <li><strong>Reports create adoption.</strong> WhatsApp summaries turn raw analytics into a workflow advertisers can actually use.</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>CheapAds case study by Raj Singh.</p>
+    <a href="../index.html#projects">Back to projects</a>
+  </footer>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>
